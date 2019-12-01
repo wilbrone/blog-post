@@ -49,4 +49,12 @@ def blog(id):
 
     comments = Comments.get_comments(blog.id)
     # return render_template('pitch.html', pitch=pitch, comment_form=comment_form, comments=comments, date=posted_date)
-    return render_template('blog.html', blog = blog,date = published_date,comment_form = comment_form, comments = comments,)
+    return render_template('blog.html', blog = blog,date = published_date,comment_form = comment_form, comments = comments)
+
+
+@main.route('/user/<uname>/blogs')
+def user_blogs(uname):
+    user = User.query.filter_by(username=uname).first()
+    blogs = Blogs.query.filter_by(user_id = user.id).all()
+
+    return render_template("profile/blogs.html", user=user,blogs=blogs)
