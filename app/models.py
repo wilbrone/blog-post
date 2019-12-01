@@ -89,6 +89,8 @@ class Comments(db.Model):
     def get_comments(cls,blog_id):
         comments = Comments.query.filter_by(blog_id = blog_id).all()
 
+        return comments
+
     @classmethod
-    def delete_comment(cls):
-        pass
+    def delete_comment(cls,id):
+        Comments.query.filter_by(id = id).delete()
