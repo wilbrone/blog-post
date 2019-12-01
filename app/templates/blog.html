@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro %}
 
 {% import "bootstrap/wtf.html" as wtf %}
 <!-- Content block -->
@@ -13,9 +14,7 @@
     </span>
   </div>
   <div>
-    {%for cmts in comments%}
-      {{ cmts.comment }}
-    {%endfor%}
+    {{macro.displayComments(comments)}}
   </div>
   {% if current_user.is_authenticated %}
     {{ wtf.quick_form(comment_form) }}
