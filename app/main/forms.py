@@ -8,3 +8,9 @@ class BlogForm(FlaskForm):
     title = StringField('Blog title', validators = [Required()])
     text = TextAreaField('Content', validators = [Required()])
     submit = SubmitField('Publish')
+
+class CommentForm(FlaskForm):
+    """docstring for CommentForm."""
+
+    text = TextAreaField('Leave a Comment:', validators = [Required()])
+    submit = SubmitField('Post')

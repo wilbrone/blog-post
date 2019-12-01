@@ -1,3 +1,4 @@
+{% import "bootstrap/wtf.html" as wtf %}
 <!-- Content block -->
 {%block content%}
 <div style="font-family: 'Indie Flower', cursive; width:70%;margin: 0 auto;">
@@ -9,6 +10,6 @@
       <p style="margin-left:10px;">Posted on {{date}} by {{blog.user.username| capitalize}}</p>
     </span>
   </div>
-
+  {{ wtf.quick_form(blog_form) }}
 </div>
 {%endblock%}

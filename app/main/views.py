@@ -39,14 +39,14 @@ def blog(id):
     blog = Blogs.get_single_blog(id)
     published_date = blog.published.strftime('%b %d, %Y')
 
-    # comment_form = CommentForm()
-    # if comment_form.validate_on_submit():
-    #     comment = comment_form.text.data
-	#
-    #     new_comment = Comment(comment = comment,user_id = current_user,pitch_id = pitch)
-	#
-    #     new_comment.save_comment()
-	#
-    # comments = Comment.get_comments(pitch.id)
+    comment_form = CommentForm()
+    if comment_form.validate_on_submit():
+        comment = comment_form.text.data
+
+        new_comment = Comments(comment = comment,user_id = current_user,blog_id = blog)
+
+        new_comment.save_comment()
+
+    comments = Comments.get_comments(blog.id)
     # return render_template('pitch.html', pitch=pitch, comment_form=comment_form, comments=comments, date=posted_date)
-    return render_template('blog.html', blog = blog,date = published_date)
+    return render_template('blog.html', blog = blog,date = published_date,comment_form = comment_form, comments = comments,)
