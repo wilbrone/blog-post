@@ -1,8 +1,26 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro %}
 
 {% block content %}
 <div class="container">
-	<h1 class="text-center">{{ title }}</h1>	
-</div>
+	<h1 class="text-center">{{ title }}</h1>
+
+	<div class="container" style="padding-bottom: 20px;">
+		<a href="{{url_for('main.new_blog')}}" class="btn btn-success">Create Blog</a>
+	</div>
+
+<!-- <div class="container" style= "font-family: 'Cormorant Upright', serif;"> -->
+	<hr>
+	<div class="row">
+	<!-- For showing brief description of the blogs -->
+		<!-- <div class="col-md-3">
+			<div class="well well-lg">
+				<h3></h3>
+				<p></p>
+				<a href="" class="btn btn-primary -center">Read More...</a>
+			</div>
+		</div> -->
+		{{macro.displayBlogs(all_blogs)}}
+	</div>
 
 {% endblock %}

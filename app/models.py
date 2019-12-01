@@ -24,6 +24,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
 
+    blog = db.relationship('Blogs', backref = 'user', lazy = "dynamic")
 
     @property
     def password(self):
@@ -55,5 +56,14 @@ class Blogs(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def get_blogs():
-        pass
+    @classmethod
+    def get_blogs(cls):
+        all_blogs = Blogs.query.all()
+
+        return all_blogs
+
+    @classmethod
+    def get_single_blog(cls,id):
+        single_blog = Blogs.query.filter_by(id = id).first()
+
+        return single_blog
