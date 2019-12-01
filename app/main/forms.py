@@ -7,4 +7,4 @@ class BlogForm(FlaskForm):
 
     title = StringField('Blog title', validators = [Required()])
     text = TextAreaField('Content', validators = [Required()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Publish')

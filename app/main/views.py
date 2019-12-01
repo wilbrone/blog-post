@@ -37,7 +37,7 @@ def new_blog():
 @main.route('/blog/<int:id>',methods = ['GET','POST'])
 def blog(id):
     blog = Blogs.get_single_blog(id)
-    published_date = blogs.published.strftime('%b %d, %Y')
+    published_date = blog.published.strftime('%b %d, %Y')
 
     # comment_form = CommentForm()
     # if comment_form.validate_on_submit():

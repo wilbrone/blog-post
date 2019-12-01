@@ -1,0 +1,14 @@
+<!-- Content block -->
+{%block content%}
+<div style="font-family: 'Indie Flower', cursive; width:70%;margin: 0 auto;">
+  <div class="row" style="background-color:#616161; color:#ffffff;height:35%;">
+    <h3 style="margin-left:10px;">{{blog.title}}</h3>
+    <hr style="margin-left:10px;margin-right:10px;">
+    <p style="margin-left:10px;">{{blog.blog}}</p>
+    <span>
+      <p style="margin-left:10px;">Posted on {{date}} by {{blog.user.username| capitalize}}</p>
+    </span>
+  </div>
+
+</div>
+{%endblock%}
