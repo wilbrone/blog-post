@@ -4,8 +4,8 @@ import datetime
 
 from . import main
 from .. import db
-from ..models import User,Blogs
-from .forms import BlogForm
+from ..models import User,Blogs,Comments
+from .forms import BlogForm,CommentForm
 
 # Views
 @main.route('/')
