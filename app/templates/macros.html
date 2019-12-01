@@ -4,7 +4,10 @@
           <div class="well well-lg">
               <h4>{{blog.title}}</h4>
               <p>{{blog.blog| truncate(100)}}...</p>
-              <p>Written by:  {{blog.user.username}} <a href="/blog/{{blog.id}}" class="btn btn-primary pull-right">Read</a> </p>
+              <p>
+                Written by:  {{blog.user.username}}
+                <a href="/blog/{{blog.id}}" class="btn pull-right">Read More...</a>
+              </p>
           </div>
       </div>
   {%endfor%}
