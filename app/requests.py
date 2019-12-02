@@ -1,5 +1,5 @@
 from . import create_app
-import request,json
+import requests,json
 from .models import Quotes
 
 def get_quotes():
