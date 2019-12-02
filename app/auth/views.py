@@ -28,8 +28,9 @@ def register():
     if form.validate_on_submit():
         user = User(email = form.email.data, username = form.username.data,full_name= form.full_name.data,password = form.password.data)
         # saving the data
-        db.session.add(user)
-        db.session.commit()
+        user.save_user()
+        # db.session.add(user)
+        # db.session.commit()
 
         mail_message("Welcome to Blog Post","email/welcome",user.email,user=user)
 

@@ -4,15 +4,17 @@ import datetime
 
 from . import main
 from .. import db
+from ..requests import get_quotes
 from ..models import User,Blogs,Comments
 from .forms import BlogForm,CommentForm
 
 # Views
 @main.route('/')
 def index():
+	quotes = get_quotes()
 	blogs = Blogs.get_blogs()
 	title = 'Blog Post App'
-	return render_template('index.html',title = title,blogs = blogs)
+	return render_template('index.html',title = title,blogs = blogs,quotes = quotes)
 
 
 @main.route('/pitch/new',methods = ['GET','POST'])
@@ -36,20 +38,20 @@ def new_blog():
 
 @main.route('/blog/<int:id>',methods = ['GET','POST'])
 def blog(id):
-    blog = Blogs.get_single_blog(id)
-    published_date = blog.published.strftime('%b %d, %Y')
+	blog = Blogs.get_single_blog(id)
+	published_date = blog.published.strftime('%b %d, %Y')
 
-    comment_form = CommentForm()
-    if comment_form.validate_on_submit():
-        comment = comment_form.text.data
+	comment_form = CommentForm()
+	if comment_form.validate_on_submit():
+		comment = comment_form.content.data
 
-        new_comment = Comments(comment = comment,user_id = current_user,blog_id = blog)
+		new_comment = Comments(comment = comment,user_id = current_user,blog_id = blog)
 
-        new_comment.save_comment()
+		new_comment.save_comment()
 
-    comments = Comments.get_comments(blog.id)
+	comments = Comments.get_comments(blog.id)
     # return render_template('pitch.html', pitch=pitch, comment_form=comment_form, comments=comments, date=posted_date)
-    return render_template('blog.html', blog = blog,date = published_date,comment_form = comment_form, comments = comments)
+	return render_template('blog.html', blog = blog,date = published_date,comment_form = comment_form, comments = comments)
 
 
 @main.route('/user/<uname>/blogs')

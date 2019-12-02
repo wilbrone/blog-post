@@ -27,6 +27,11 @@ class User(UserMixin,db.Model):
     blog = db.relationship('Blogs', backref = 'user', lazy = "dynamic")
     comment = db.relationship('Comments', backref = 'user', lazy = "dynamic")
 
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
+
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -94,3 +99,24 @@ class Comments(db.Model):
     @classmethod
     def delete_comment(cls,id):
         Comments.query.filter_by(id = id).delete()
+
+
+class Quotes():
+    def __init__(self, author,id,quote):
+        self.id = id
+        self.author = author
+        self.quote = quote
+
+class Subscriber(db.Model):
+    __tablename__ = 'subcriber'
+
+    id = db.Column(db.Integer,primary_key = True)
+    email = db.Column(db.String,unique = True,index = True)
+
+
+    def save_subscribers(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Subscriber {self.email}'

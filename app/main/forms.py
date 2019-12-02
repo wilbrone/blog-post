@@ -12,5 +12,5 @@ class BlogForm(FlaskForm):
 class CommentForm(FlaskForm):
     """docstring for CommentForm."""
 
-    text = TextAreaField('Leave a Comment:', validators = [Required()])
+    content = TextAreaField('Leave a Comment:', validators = [Required()])
     submit = SubmitField('Post')
