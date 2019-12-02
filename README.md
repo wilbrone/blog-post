@@ -1,10 +1,17 @@
 # Blog Post application
 
-## By Wilbrone Okoth
+#### Blog Post App, 23rd Nov, 2019
+#### By **Wilbrone**
+<!-- ## By **Wilbrone Okoth** -->
 
 ## Description
+Blog Apps allows users to view blogs from different people and get to comment and give feedback. Though they have to log in to the system and the can also add their blogs and share them with others
 
-
+## Technologies Used
+This project was build using Python3.6.
+Flask
+postgresql for the database and
+Deployed on Heroku
 
 ### Set-up instructions
 
@@ -29,7 +36,13 @@ $ chmod a+x start.sh
 
 ```bash
 $ ./start.sh
+
 ```
+## Support, Further help and contact details
+wilbroneokoth@gmail.com
+
+https://blogs-p.herokuapp.com/ to access the deployed application on heroku
+
 ## License
 
 MIT License
