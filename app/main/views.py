@@ -1,11 +1,12 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import render_template,request,redirect,url_for,abort,flash
 from flask_login import login_required,current_user
 import datetime
 
 from . import main
 from .. import db
+from ..email import mail_message
 from ..requests import get_quotes
-from ..models import User,Blogs,Comments
+from ..models import User,Blogs,Comments,Subscriber
 from .forms import BlogForm,CommentForm
 
 # Views
@@ -60,3 +61,12 @@ def user_blogs(uname):
     blogs = Blogs.query.filter_by(user_id = user.id).all()
 
     return render_template("profile/blogs.html", user=user,blogs=blogs)
+
+@main.route('/subscribe',methods = ['GET','POST'])
+def subscribe():
+	email = request.form.get('subscriber')
+	new_subscriber = Subscriber(email = email)
+	new_subscriber.save_subscriber()
+	mail_message("Subscribed to Blog Post.","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
+	flash('Sucessfuly subscribed')
+	return redirect(url_for('main.index'))

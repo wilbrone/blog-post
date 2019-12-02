@@ -13,6 +13,23 @@
 		Written By: {{ quotes.author }}
 	</div>
 
+	<div class="container-fluid">
+	    <form class="form-inline ml-2" action="{{url_for('main.subscribe')}}" method="POST">
+	        <div class="md-form form-group">
+	            <input type="email"  class="form-control " name ="subscriber" style="margin-top: 40px; margin-right: 20px; height: 30px; font-size: 15px; border: none;" placeholder="Email..." required>
+	        </div>
+	        <div class="md-form form-group">
+	            <button class="btn btn-sm btn-info" style="margin-top: 40px; height: 30px;">SUBSCRIBE</button>
+	        </div>
+	    </form>
+	    {% for message in get_flashed_messages() %}
+	    <div class="alert alert-success">
+	        <button type="button" class="close" style="margin-top:10px;" data-dismiss="alert">&times;</button>
+	        {{ message }}
+	    </div>
+	    {% endfor %}
+	</div>
+
 <!-- <div class="container" style= "font-family: 'Cormorant Upright', serif;"> -->
 	<hr>
 	<div class="row">
